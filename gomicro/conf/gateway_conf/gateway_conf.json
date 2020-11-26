@@ -1,0 +1,15 @@
+{
+  "server_name": "client",
+  "server_addr": ":8000",
+  "etcd": {
+    "address": "127.0.0.1:2379"
+  },
+  "db": {
+    "name": "mysql",
+    "address": "root:33css@tcp(127.0.0.1:3306)/xsb?charset=utf8"
+  },
+  "user_rpc_server": {
+    "client_name": "user.rpc.client",
+    "server_name":"user.rpc.server"
+  }
+}
