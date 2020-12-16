@@ -2,11 +2,13 @@ package mod
 
 import (
 	"example/gomicro/utils"
+	"fmt"
 )
 
 func Login (mobile,password string)(userid int64,username string,ok bool,err error){
 	user := &GameUsers{}
 	//password = utils.Md5(password)
+	fmt.Println(mobile,password)
 	ok,err = engine.Where("Mobile = ? and Password = ?",mobile,password).Get(user)
 	if !ok || err != nil{
 		return

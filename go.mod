@@ -14,14 +14,18 @@ require (
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/protobuf v1.4.0
+	github.com/google/wire v0.4.0
 	github.com/mattn/go-sqlite3 v1.14.5 // indirect
+	github.com/micro/cli/v2 v2.1.2
 	github.com/micro/go-micro/v2 v2.9.1
 	github.com/micro/go-plugins/registry/etcdv3/v2 v2.9.1
+	github.com/pkg/errors v0.9.1
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/tealeg/xlsx v1.0.5 // indirect
 	github.com/xormplus/builder v0.0.0-20200331055651-240ff40009be // indirect
-	github.com/xormplus/xorm v0.0.0-20201020065950-782d727a761a
+	github.com/xormplus/xorm v0.0.0-20201213020207-d4eee8f4037a
 	go.uber.org/zap v1.13.0
+	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
 	google.golang.org/protobuf v1.22.0
 	gopkg.in/flosch/pongo2.v3 v3.0.0-20141028000813-5e81b817a0c4 // indirect
 )
