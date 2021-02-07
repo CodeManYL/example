@@ -3,9 +3,7 @@ package main
 import (
 	user "example/engineering-layout/app/service/users/api"
 	"example/engineering-layout/app/service/users/configs"
-	"example/engineering-layout/app/service/users/internal/biz"
-	"example/engineering-layout/app/service/users/internal/data"
-	"example/engineering-layout/app/service/users/internal/service"
+	//"example/engineering-layout/app/service/users/internal/service"
 	"fmt"
 	"github.com/micro/cli/v2"
 	"github.com/micro/go-micro/v2"
@@ -14,18 +12,25 @@ import (
 	"github.com/micro/go-plugins/registry/etcdv3/v2"
 )
 
+
+
+
 func serviceRegister(conf *configs.UserRpcConf,s micro.Service){
-	userRepo,err := data.NewUserData(conf.Db.Name,conf.Db.Address)
+	//userRepo,err := data.NewUserData(conf.Db.Name,conf.Db.Address)
+	//if err != nil {
+	//	panic(err)
+	//}
+	//userBiz := biz.NewUserBiz(userRepo)
+	//userService := service.NewUserService(userBiz)
+	se,err := InitializeService(conf)
 	if err != nil {
 		panic(err)
 	}
-	userBiz := biz.NewUserBiz(userRepo)
-	userService := service.NewUserService(userBiz)
 
-
-	if err := user.RegisterUserHandler(s.Server(),userService);err != nil {
+	if err := user.RegisterUserHandler(s.Server(),se);err != nil {
 		panic(err)
 	}
+
 }
 
 func main() {
@@ -52,6 +57,8 @@ func main() {
 		}),
 	)
 	s.Init()
+
+
 
 	serviceRegister(conf,s)
 

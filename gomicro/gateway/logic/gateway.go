@@ -5,7 +5,6 @@ import (
 	"example/gomicro/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/micro/go-micro/v2/errors"
 )
 
 var (
@@ -25,8 +24,6 @@ func Login(c *gin.Context){
 		Username: username,
 		Password: password,
 	})
-
-	errors.New()
 
 	if err != nil {
 		utils.BgLogger.Errorf("Login:%v err:%v",username,err)

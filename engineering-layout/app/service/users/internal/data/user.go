@@ -2,14 +2,17 @@ package data
 
 import (
 	user "example/engineering-layout/app/service/users/api"
+	"example/engineering-layout/app/service/users/configs"
 	"example/engineering-layout/app/service/users/internal/biz"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/google/wire"
 	"github.com/pkg/errors"
 	"github.com/xormplus/xorm"
-	_ "github.com/go-sql-driver/mysql"
-
 )
 
 var _ biz.UserMod = (*userMod)(nil)
+
+var MockUserRepoSet = wire.NewSet(NewUserData,wire.Bind(new(biz.UserMod), new(*userMod)))
 
 const  (
 	_getUserByMobileAndPassword = "select * from web_base_user where user_name = ? and  password = ?"
@@ -19,8 +22,12 @@ type userMod struct {
 	engine *xorm.Engine
 }
 
-func NewUserData(dbName, dbAddress string) (biz.UserMod,error) {
-	engine, err := xorm.NewEngine(dbName, dbAddress)
+func NewUserData2()*userMod{
+	return &userMod{}
+}
+
+func NewUserData(cof *configs.UserRpcConf) (*userMod,error) {
+	engine, err := xorm.NewEngine(cof.Db.Name, cof.Db.Address)
 	if err != nil {
 		return nil,err
 	}
